@@ -1,6 +1,9 @@
 ## Range JS
 JavaScript library for the HTML5 slider element
 
+### Demo Page
+https://rocketstars.ru/rangejs/
+
 ### Сapability Lib
 This library allows, in addition to basic config files like the minimum, maximum and current values, it allows you to configure:
 - step size
