@@ -2,22 +2,15 @@ const qs = (selector) => {
   return document.querySelectorAll(selector);
 };
 
-let index = 0;
+const elems = qs('.range__slider');
 
-document.onclick = () => {
-  const elems = qs('.range__slider');
-  for (let i = 0; i < elems.length; i++) {
-    elems[i].addEventListener("click", () => index = i, true);
-  }
-
-  console.log(index);
-  const sliderElem = qs('.range__slider')[index];
-  slide(sliderElem);
-};
-
-function slide(sl) {
+for (let i = 0; i < elems.length; i++) {
+  slide(elems[i]);
+}
+	
+function slide(sliderElem) {
   
-  const thumbElem = sl.children[0];
+  const thumbElem = sliderElem.children[0];
 
   thumbElem.onmousedown = (e) => {
 
@@ -25,7 +18,7 @@ function slide(sl) {
     const shiftX = e.pageX - thumbCoords.left;
     // shiftY здесь не нужен, слайдер двигается только по горизонтали
 
-    const sliderCoords = getCoords(sl);
+    const sliderCoords = getCoords(sliderElem);
 
     document.onmousemove = (e) => {
       //  вычесть координату родителя, т.к. position: relative
@@ -35,7 +28,7 @@ function slide(sl) {
       if (newLeft < 0) {
         newLeft = 0;
       }
-      const rightEdge = sl.offsetWidth - thumbElem.offsetWidth;
+      const rightEdge = sliderElem.offsetWidth - thumbElem.offsetWidth;
       if (newLeft > rightEdge) {
         newLeft = rightEdge;
       }
